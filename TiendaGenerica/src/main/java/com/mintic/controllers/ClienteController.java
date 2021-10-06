@@ -43,14 +43,23 @@ public class ClienteController {
 //		recibir un dto e instanciar el cliente 
 	}
 	
-	@RequestMapping(value= "api/clientes", method = RequestMethod.DELETE)
+	@RequestMapping(value= "api/Deletecliente/{id}", method = RequestMethod.DELETE)
 	public void deleteCliente (@PathVariable Long id) {
 		
 		iClienteDAO.eliminar(id);
 		
 	}
 	
-	@RequestMapping(value= "api/clientes/{id}", method = RequestMethod.POST)
+	@RequestMapping(value= "api/clientesById/{id}", method = RequestMethod.GET)
+	public Cliente clientesById (@PathVariable Long id) {
+		
+		
+		
+		return iClienteDAO.clientById(id);
+	}
+	
+	
+	@RequestMapping(value= "api/updateCliente/{id}", method = RequestMethod.POST)
 	public void updateCliente (@RequestBody Cliente cliente, @PathVariable Long id) {
 		
 		

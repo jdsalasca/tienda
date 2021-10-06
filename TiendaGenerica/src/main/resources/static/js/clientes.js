@@ -13,7 +13,6 @@ function ActualizarEmailDelUsuario() {
 
 
 
-
 }
 
 
@@ -32,8 +31,8 @@ async function cargarUsuarios() {
 
 	let listadohtml = '';
 	for (let cliente of clientes) {
-		let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + cliente.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
-		let botonActualizar = '<a href="#" onclick= "actualizarUsuario(' + cliente.id + ')"class="btn btn-light btn-icon-split"><span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span><span class="text">  Actualizar</span></a>'
+		let botonEliminar = '<a href="#" onclick="eliminarCliente(' + cliente.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+		let botonActualizar = '<a href="#" onclick= "actualizarCliente(' + cliente.id + ')"class="btn btn-light btn-icon-split"><span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span><span class="text">  Actualizar</span></a>'
 		let cedulaTexto = cliente.numeroDocumento == null ? '-' : cliente.numeroDocumento;
 
 		let clientehtml = '<tr><td>' + cedulaTexto + '</td><td>' + 'en proceso' + '</td><td>' + cliente.nombre + '</td><td>' + cliente.email + '</td><td>' + cliente.telefono + '</td><td>' + botonEliminar + '' + botonActualizar + '</td></tr>'
@@ -48,14 +47,14 @@ async function cargarUsuarios() {
 
 
 
-async function eliminarUsuario(id) {
+async function eliminarCliente(id) {
 
 	if (!confirm('desea eliminar este usuario?')) {
 		return;
 
 	}
 
-	const request = await fetch('api/usuarioDelete/' + id, {
+	const request = await fetch('api/Deletecliente/' + id, {
 		method: 'DELETE',
 		headers: getHeaders()
 
@@ -66,15 +65,15 @@ async function eliminarUsuario(id) {
 
 }
 
-async function actualizarUsuario(id) {
+async function actualizarCliente(id) {
 
-	if (!confirm('desea actualizar este usuario?')) {
+	if (!confirm('desea actualizar este cliente?')) {
 		return;
 
 	}
 
 
-	window.location.href = 'actualizar.html?id=' + id;
+	window.location.href = 'actualizarCliente.html?id=' + id;
 
 
 }

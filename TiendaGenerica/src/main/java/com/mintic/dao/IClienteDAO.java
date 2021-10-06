@@ -21,6 +21,8 @@ public interface IClienteDAO {
 	Cliente FindById (Long id);
 
 	List<Cliente> clientByCedula(String cedula);
+
+	Cliente clientById(Long id);
 	
 	
 

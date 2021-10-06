@@ -38,7 +38,9 @@ public class ClienteDAOImp implements IClienteDAO{
 
 	@Override
 	public void eliminar(Long id) {
-		// TODO Auto-generated method stub
+		Cliente cliente = entityManager.find(Cliente.class, id);
+		entityManager.remove(cliente);
+		
 		
 	}
 
@@ -58,8 +60,9 @@ public class ClienteDAOImp implements IClienteDAO{
 
 	@Override
 	public void actualizar(Cliente cliente) {
-		// TODO Auto-generated method stub
 		
+		entityManager.merge(cliente);
+
 	}
 
 	@Override
@@ -83,6 +86,18 @@ public class ClienteDAOImp implements IClienteDAO{
 
 	    return lista;
 
+	}
+
+	@Override
+	public Cliente clientById(Long id) {
+		Cliente cliente = entityManager.find(Cliente.class, id);
+		
+		if (cliente == null) {
+			return null;
+		}
+				
+				
+		return cliente;
 	}
 
 }

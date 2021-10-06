@@ -74,7 +74,7 @@ async function actualizarUsuario(id) {
 	}
 
 
-	window.location.href = 'actualizar.html?id=' + id;
+	window.location.href = 'actualizarUsuario.html?id=' + id;
 
 
 }
