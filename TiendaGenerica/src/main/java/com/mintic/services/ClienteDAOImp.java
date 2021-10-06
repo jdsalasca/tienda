@@ -10,6 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mintic.dao.IClienteDAO;
 import com.mintic.entities.Cliente;
+import com.mintic.entities.Usuario;
+
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 
 
 
@@ -34,7 +38,9 @@ public class ClienteDAOImp implements IClienteDAO{
 
 	@Override
 	public void eliminar(Long id) {
-		// TODO Auto-generated method stub
+		Cliente cliente = entityManager.find(Cliente.class, id);
+		entityManager.remove(cliente);
+		
 		
 	}
 
@@ -54,14 +60,44 @@ public class ClienteDAOImp implements IClienteDAO{
 
 	@Override
 	public void actualizar(Cliente cliente) {
-		// TODO Auto-generated method stub
 		
+		entityManager.merge(cliente);
+
 	}
 
 	@Override
 	public Cliente FindById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Cliente> clientByCedula(String cedula) {
+		
+	    String query = "FROM Cliente WHERE numeroDocumento = :numeroDocumento";
+	    List<Cliente> lista = entityManager.createQuery(query)
+	            .setParameter("numeroDocumento", cedula)
+	            .getResultList();
+
+	    if (lista.isEmpty()) {
+	        return null;
+	    }
+
+
+	    return lista;
+
+	}
+
+	@Override
+	public Cliente clientById(Long id) {
+		Cliente cliente = entityManager.find(Cliente.class, id);
+		
+		if (cliente == null) {
+			return null;
+		}
+				
+				
+		return cliente;
 	}
 
 }
