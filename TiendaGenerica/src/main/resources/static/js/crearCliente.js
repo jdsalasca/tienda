@@ -49,7 +49,7 @@ function cancelar() {
 
 	}
 
-	window.location.href = 'usuarios.html'
+	window.location.href = 'clientes.html'
 
 
 }

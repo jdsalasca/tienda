@@ -81,6 +81,16 @@ public class ClienteController {
 	}
 	
 	
+	@RequestMapping(value= "api/clientesByCedula/{cedula}", method = RequestMethod.GET)
+	public List<Cliente> clientesByCedula (@PathVariable String cedula) {
+		
+		
+		
+		return iClienteDAO.clientByCedula(cedula);
+	}
+	
+	
+	
 	
 
 }

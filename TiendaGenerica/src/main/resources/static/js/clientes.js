@@ -94,8 +94,6 @@ async function crearCliente() {
 
 
 
-
-
 function getHeaders() {
 	return {
 		'Accept': 'application/json',
@@ -106,38 +104,37 @@ function getHeaders() {
 }
 
 
-async function buscarUsuario (){
+async function buscarCliente (){
 	
 	if (document.getElementById('txtCedula').value != ''){
 		
-		const request = await fetch('api/usuarioGetByCedula/'+ document.getElementById('txtCedula').value, {
+
+	
+	const request = await fetch('api/clientesByCedula/'+ document.getElementById('txtCedula').value, {
 		method: 'GET',
 		headers: getHeaders()
 
 	});
-	
-	
+	const clientes = await request.json();
 
-	const usuarios = await request.json();
-
-	console.log(usuarios);
+	console.log(clientes);
 
 
 	let listadohtml = '';
-	for (let usuario of usuarios) {
-		let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + usuario.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
-		let botonActualizar = '<a href="#" onclick= "actualizarUsuario(' + usuario.id + ')"class="btn btn-light btn-icon-split"><span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span><span class="text">  Actualizar</span></a>'
-		let cedulaTexto = usuario.cedula == null ? '-' : usuario.cedula;
+	for (let cliente of clientes) {
+		let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + cliente.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+		let botonActualizar = '<a href="#" onclick= "actualizarUsuario(' + cliente.id + ')"class="btn btn-light btn-icon-split"><span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span><span class="text">  Actualizar</span></a>'
+		let cedulaTexto = cliente.numeroDocumento == null ? '-' : cliente.numeroDocumento;
 
-		let usuariohtml = '<tr><td>' + usuario.id + '</td><td>' + usuario.nick + '</td><td>' + usuario.nombre + '</td><td>' + usuario.email + '</td><td>' + cedulaTexto + '</td><td>' + botonEliminar + '' + botonActualizar + '</td></tr>'
-		listadohtml += usuariohtml;
+		let clientehtml = '<tr><td>' + cedulaTexto + '</td><td>' + 'en proceso' + '</td><td>' + cliente.nombre + '</td><td>' + cliente.email + '</td><td>' + cliente.telefono + '</td><td>' + botonEliminar + '' + botonActualizar + '</td></tr>'
+		listadohtml += clientehtml;
+
 
 
 	}
-	document.querySelector('#usuarios tbody').outerHTML = listadohtml;
+	document.querySelector('#clientes tbody').outerHTML = listadohtml;
 
-	
-	}else {
+}else {
 		cargarUsuarios()
 	}
 	
