@@ -12,11 +12,10 @@ public interface IProductoDAO {
 
 	void eliminar(Long id);
 
-	void registrar(Producto cliente);
+	void registrar(Producto producto);
 
-	Producto obtenerProductoPorCredenciales(Producto cliente);
 
-	void actualizar(Producto cliente);
+	void actualizar(Producto producto);
 	
 	Producto FindById (Long id);
 	

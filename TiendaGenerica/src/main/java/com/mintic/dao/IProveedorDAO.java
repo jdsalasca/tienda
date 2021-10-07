@@ -11,13 +11,14 @@ public interface IProveedorDAO {
 
 	void eliminar(Long id);
 
-	void registrar(Proveedor cliente);
+	void registrar(Proveedor proveedor);
 
-	Proveedor obtenerProveedoresPorCredenciales(Proveedor cliente);
 
-	void actualizar(Proveedor cliente);
+	void actualizar(Proveedor proveedor);
 	
 	Proveedor FindById (Long id);
+	
+	List<Proveedor> ProovedorByCedula(String nit);
 	
 	
 

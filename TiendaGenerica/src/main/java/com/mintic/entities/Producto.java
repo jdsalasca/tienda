@@ -24,6 +24,8 @@ public class Producto {
     private String nombre;
     
     private double precioCompra;
+    
+    
 
 	public Long getId() {
 		return id;
@@ -63,6 +65,21 @@ public class Producto {
 
 	public void setPrecioCompra(double precioCompra) {
 		this.precioCompra = precioCompra;
+	}
+	
+	
+
+	public Producto(Long id, Proveedor idProveedor, double ivaCompra, String nombre, double precioCompra) {
+		super();
+		this.id = id;
+		this.idProveedor = idProveedor;
+		this.ivaCompra = ivaCompra;
+		this.nombre = nombre;
+		this.precioCompra = precioCompra;
+	}
+
+	public Producto() {
+		super();
 	}
     
     

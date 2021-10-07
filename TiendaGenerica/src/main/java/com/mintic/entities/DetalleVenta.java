@@ -7,6 +7,8 @@ import javax.persistence.Id;
 
 @Entity
 public class DetalleVenta {
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +18,8 @@ public class DetalleVenta {
     private int valorTotal;
     private double valorVenta;
     private double valorIva;
+    
+    
 	public Long getId() {
 		return id;
 	}
@@ -58,7 +62,27 @@ public class DetalleVenta {
 	public void setValorIva(double valorIva) {
 		this.valorIva = valorIva;
 	}
-    
+	public DetalleVenta(Long id, Long idProducto, Long idVenta, int cantidadProducto, int valorTotal, double valorVenta,
+			double valorIva) {
+		super();
+		this.id = id;
+		this.idProducto = idProducto;
+		this.idVenta = idVenta;
+		this.cantidadProducto = cantidadProducto;
+		this.valorTotal = valorTotal;
+		this.valorVenta = valorVenta;
+		this.valorIva = valorIva;
+	}
+	
+	public DetalleVenta() {
+	}
+	public DetalleVenta(Long id) {
+		super();
+		this.id = id;
+	}
+	
+	
+    	
     
 
 }
