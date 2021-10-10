@@ -133,7 +133,7 @@ async function buscarUsuario (){
 		 + '</td><td>' + usuario.email + '</td><td>' + cedulaTexto + '</td><td>'
 	 + botonEliminar + '' + botonActualizar + '</td></tr>'
 
-dd
+
 		listadohtml += usuariohtml;
 
 

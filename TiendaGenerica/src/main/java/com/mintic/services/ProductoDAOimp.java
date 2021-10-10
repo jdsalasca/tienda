@@ -51,10 +51,25 @@ public class ProductoDAOimp implements IProductoDAO{
 
 	@Override
 	public Producto FindById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return entityManager.find(Producto.class, id);
+		
 	}
-
 	
+	@Override
+	public List<Producto> FindByNombre(String nombre) {
+	    String query = "FROM Producto WHERE nombre LIKE :pattern ";
+	    List<Producto> lista = entityManager.createQuery(query)
+	            .setParameter("pattern", "%"+ nombre+"%")
+	            .setMaxResults(4)
+	            .getResultList();
+
+	    if (lista.isEmpty()) {
+	        return null;
+	    }
+	    return lista;
+
+}
 
 }

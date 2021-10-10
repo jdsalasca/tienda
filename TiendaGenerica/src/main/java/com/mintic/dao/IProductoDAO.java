@@ -18,6 +18,8 @@ public interface IProductoDAO {
 	void actualizar(Producto producto);
 	
 	Producto FindById (Long id);
+
+	List<Producto> FindByNombre(String nombre);
 	
 	
 
