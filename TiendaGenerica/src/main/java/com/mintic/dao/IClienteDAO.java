@@ -23,6 +23,8 @@ public interface IClienteDAO {
 	List<Cliente> clientByCedula(String cedula);
 
 	Cliente clientById(Long id);
+
+	List<Cliente> clienteByName(String name);
 	
 	
 

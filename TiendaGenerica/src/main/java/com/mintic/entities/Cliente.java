@@ -106,6 +106,11 @@ public class Cliente {
 
 	public Cliente() {
 	}
+
+	public Cliente(Long id) {
+		super();
+		this.id = id;
+	}
     
     
 

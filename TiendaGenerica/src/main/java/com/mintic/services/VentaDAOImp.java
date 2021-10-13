@@ -5,12 +5,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mintic.dao.IVentaDAO;
+import com.mintic.entities.Proveedor;
 import com.mintic.entities.Venta;
 
 
 @Repository
+@Transactional
 public class VentaDAOImp implements IVentaDAO {
 	
 	@PersistenceContext
@@ -18,32 +21,38 @@ public class VentaDAOImp implements IVentaDAO {
 
 	@Override
 	public List<Venta> getVentas() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "FROM Venta";
+		List<Venta> list = entityManager.createQuery(query).getResultList();
+		if (list.isEmpty()) {
+			
+			return null;
+		}
+		return list;
+		
 	}
 
 	@Override
 	public void eliminar(Long id) {
-		// TODO Auto-generated method stub
+		Venta venta = entityManager.find(Venta.class, id);
+		entityManager.remove(venta);
 		
 	}
 
 	@Override
-	public void registrar(Venta cliente) {
-		// TODO Auto-generated method stub
+	public void registrar(Venta venta) {
+		entityManager.merge(venta);
 		
 	}
 
 	@Override
-	public void actualizar(Venta cliente) {
-		// TODO Auto-generated method stub
+	public void actualizar(Venta venta) {
+		entityManager.merge(venta);
 		
 	}
 
 	@Override
 	public Venta FindById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(Venta.class, id);
 	}
 
 

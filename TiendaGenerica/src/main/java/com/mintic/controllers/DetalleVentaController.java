@@ -3,6 +3,7 @@ package com.mintic.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.dao.IDetalleVentaDAO;
 import com.mintic.entities.DetalleVenta;
-import com.mintic.entities.Proveedor;
 
 @RestController
 public class DetalleVentaController {
@@ -25,13 +25,36 @@ public class DetalleVentaController {
 	}
 	
 	
-	@RequestMapping(value= "api/DetalleVenta", method = RequestMethod.POST)
+	@RequestMapping(value= "api/addDetalleVenta", method = RequestMethod.POST)
 	public void addDetalleVenta (@RequestBody DetalleVenta detalleVenta) {
 		
-//		cliente.setIdTipoDocumento(itipodeDocumentoDAO.getTipodeDocumentoById(cliente.getIdTipoDocumento().getId()));
 		iDetalleVentaDAO.registrar(detalleVenta);
-//		recibir un dto e instanciar el cliente 
 	}
 	
 
+	
+	@RequestMapping(value= "api/DeleteDetalleVenta/{id}", method = RequestMethod.DELETE)
+	public void deleteVenta (@PathVariable Long id) {
+		
+		iDetalleVentaDAO.eliminar(id);
+	}
+	
+	
+	@RequestMapping(value= "api/UpdateDetalleVenta/{id}", method = RequestMethod.POST)
+	public void updateVenta (@RequestBody DetalleVenta detalleVenta, @PathVariable Long id) {
+		
+		iDetalleVentaDAO.actualizar(detalleVenta);
+	}
+	
+
+	
+	
+	@RequestMapping(value= "api/DetalleVentaById/{id}", method = RequestMethod.GET)
+	public DetalleVenta proveedorById ( @PathVariable Long id) {
+		
+		return iDetalleVentaDAO.FindById(id);
+	}
+	
+	
+	
 }

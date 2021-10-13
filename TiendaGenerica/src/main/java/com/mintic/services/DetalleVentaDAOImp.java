@@ -12,6 +12,7 @@ import com.mintic.dao.IDetalleVentaDAO;
 import com.mintic.entities.Cliente;
 import com.mintic.entities.DetalleVenta;
 import com.mintic.entities.Proveedor;
+import com.mintic.entities.Venta;
 
 
 
@@ -40,7 +41,7 @@ public class DetalleVentaDAOImp implements IDetalleVentaDAO{
 	@Override
 	public void eliminar(Long id) {
 		
-		Proveedor detalleventa = entityManager.find(Proveedor.class, id);
+		DetalleVenta detalleventa = entityManager.find(DetalleVenta.class, id);
 		entityManager.remove(detalleventa);
 		
 	}
@@ -60,8 +61,7 @@ public class DetalleVentaDAOImp implements IDetalleVentaDAO{
 
 	@Override
 	public DetalleVenta FindById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return entityManager.find(DetalleVenta.class, id);
 	}
 
 

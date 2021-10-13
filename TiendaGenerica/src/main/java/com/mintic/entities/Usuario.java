@@ -82,6 +82,25 @@ public class Usuario {
 		this.password = password;
 	}
 
+	public Usuario(Long id, String nombre, String nick, String cedula, String email, String password) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.nick = nick;
+		this.cedula = cedula;
+		this.email = email;
+		this.password = password;
+	}
+
+	public Usuario() {
+		super();
+	}
+
+	public Usuario(Long id) {
+		super();
+		this.id = id;
+	}
+
 
 
 	

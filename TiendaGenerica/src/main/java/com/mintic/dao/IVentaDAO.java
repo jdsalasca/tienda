@@ -12,10 +12,10 @@ public interface IVentaDAO {
 
 	void eliminar(Long id);
 
-	void registrar(Venta cliente);
+	void registrar(Venta venta);
 
 
-	void actualizar(Venta cliente);
+	void actualizar(Venta venta);
 	
 	Venta FindById (Long id);
 	

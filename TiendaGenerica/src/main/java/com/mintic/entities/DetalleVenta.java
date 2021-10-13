@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class DetalleVenta {
@@ -12,30 +14,38 @@ public class DetalleVenta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long idProducto;
-    private Long idVenta;
+	
+	
+    @ManyToOne
+    @JoinColumn(name = "idProducto")
+    private Producto idProducto;
+    
+    @ManyToOne
+    @JoinColumn(name = "idVenta")
+    private Venta idVenta;
     private int cantidadProducto;
     private int valorTotal;
     private double valorVenta;
     private double valorIva;
     
     
+
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getIdProducto() {
+	public Producto getIdProducto() {
 		return idProducto;
 	}
-	public void setIdProducto(Long idProducto) {
+	public void setIdProducto(Producto idProducto) {
 		this.idProducto = idProducto;
 	}
-	public Long getIdVenta() {
+	public Venta getIdVenta() {
 		return idVenta;
 	}
-	public void setIdVenta(Long idVenta) {
+	public void setIdVenta(Venta idVenta) {
 		this.idVenta = idVenta;
 	}
 	public int getCantidadProducto() {
@@ -62,8 +72,10 @@ public class DetalleVenta {
 	public void setValorIva(double valorIva) {
 		this.valorIva = valorIva;
 	}
-	public DetalleVenta(Long id, Long idProducto, Long idVenta, int cantidadProducto, int valorTotal, double valorVenta,
-			double valorIva) {
+	
+	
+	public DetalleVenta(Long id, Producto idProducto, Venta idVenta, int cantidadProducto, int valorTotal,
+			double valorVenta, double valorIva) {
 		super();
 		this.id = id;
 		this.idProducto = idProducto;
@@ -73,7 +85,6 @@ public class DetalleVenta {
 		this.valorVenta = valorVenta;
 		this.valorIva = valorIva;
 	}
-	
 	public DetalleVenta() {
 	}
 	public DetalleVenta(Long id) {

@@ -13,9 +13,6 @@ import com.mintic.dao.IClienteDAO;
 import com.mintic.dao.ITipodeDocumentoDAO;
 import com.mintic.entities.Cliente;
 import com.mintic.entities.TipodeDocumento;
-import com.mintic.entities.Usuario;
-import com.mintic.services.ClienteDAOImp;
-import com.mintic.services.TipodeDocumentoDAOImp;
 
 @RestController
 public class ClienteController {
@@ -98,7 +95,13 @@ public class ClienteController {
 		return iClienteDAO.clientByCedula(cedula);
 	}
 	
-	
+	@RequestMapping(value= "api/FindByNameCliente/{name}", method = RequestMethod.GET)
+	public List<Cliente> clientesByName (@PathVariable String name) {
+		
+		
+		
+		return iClienteDAO.clienteByName(name);
+	}
 	
 	
 
