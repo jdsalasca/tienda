@@ -17,6 +17,9 @@ public interface IDetalleVentaDAO {
 	void actualizar(DetalleVenta detalleventa);
 	
 	DetalleVenta FindById (Long id);
+
+
+	List<DetalleVenta> detalleVentasByName(String name);
 	
 	
 

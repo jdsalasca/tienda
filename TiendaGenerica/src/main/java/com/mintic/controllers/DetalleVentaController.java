@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.dao.IDetalleVentaDAO;
+import com.mintic.entities.Cliente;
 import com.mintic.entities.DetalleVenta;
 
 @RestController
@@ -55,6 +56,8 @@ public class DetalleVentaController {
 		return iDetalleVentaDAO.FindById(id);
 	}
 	
+	
+
 	
 	
 }

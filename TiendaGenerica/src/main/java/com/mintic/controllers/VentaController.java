@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.dao.IVentaDAO;
+import com.mintic.entities.Cliente;
+import com.mintic.entities.DetalleVenta;
 import com.mintic.entities.Venta;
 
 @RestController
@@ -55,7 +57,16 @@ public class VentaController {
 return iVentaDAO.FindById(id);
 	}
 	
+	@RequestMapping(value= "api/FindVentasForClient/{id}", method = RequestMethod.GET)
+	public List<Venta> VentasByName (@PathVariable Long id) {
+		
+		
+		
+		return iVentaDAO.VentasByClientId(id);
+	}
 	
+	
+
 	
 	
 

@@ -181,6 +181,8 @@ async function agregarProducto (id){
 let totalSinIvaTotal = 0
 let totalConIvaTotal = 0
 var yes = document.getElementById("createFactura");
+
+
 yes.onclick = function(){
 	
 	for (i in values){

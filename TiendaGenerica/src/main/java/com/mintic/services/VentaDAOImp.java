@@ -4,10 +4,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mintic.dao.IVentaDAO;
+import com.mintic.entities.DetalleVenta;
 import com.mintic.entities.Proveedor;
 import com.mintic.entities.Venta;
 
@@ -54,6 +56,25 @@ public class VentaDAOImp implements IVentaDAO {
 	public Venta FindById(Long id) {
 		return entityManager.find(Venta.class, id);
 	}
+	
+	
+	@Override
+	public List<Venta> VentasByClientId(Long id) {
+		/*
+		 * @Query (nativeQuery= true, value =
+		 * "FROM Venta RIGHT JOIN Cliente ON Venta.idCliente = Cliente.id WHERE Cliente.id = :id"
+		 * ) String query =
+		 * "FROM Venta RIGHT JOIN Cliente ON Venta.idCliente = Cliente.id WHERE Cliente.id = :id"
+		 * ; List<Venta> lista = entityManager.createQuery(query, Venta.class)
+		 * .setParameter("id", id) .getResultList();
+		 * 
+		 * if (lista.isEmpty()) { return null; }
+		 * 
+		 * return lista;
+		 */
+		return null;
+	}
+
 
 
 }

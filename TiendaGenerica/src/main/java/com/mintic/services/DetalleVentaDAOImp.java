@@ -65,5 +65,21 @@ public class DetalleVentaDAOImp implements IDetalleVentaDAO{
 	}
 
 
+	@Override
+	public List<DetalleVenta> detalleVentasByName(String name) {
+	    String query = "FROM DetalleVentas"
+	    		+ "SELECT * WHERE nit = :nit";
+	    List<DetalleVenta> lista = entityManager.createQuery(query)
+	            .setParameter("name", name)
+	            .getResultList();
+
+	    if (lista.isEmpty()) {
+	        return null;
+	    }
+
+	    return lista;
+	}
+
+
 
 }
