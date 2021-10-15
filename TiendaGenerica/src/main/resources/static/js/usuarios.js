@@ -20,7 +20,7 @@ function ActualizarEmailDelUsuario() {
 async function cargarUsuarios() {
 
 
-	const request = await fetch('api/usuarios', {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/usuarios', {
 		method: 'GET',
 		headers: getHeaders()
 
@@ -55,7 +55,7 @@ async function eliminarUsuario(id) {
 
 	}
 
-	const request = await fetch('api/usuarioDelete/' + id, {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/usuarioDelete/' + id, {
 		method: 'DELETE',
 		headers: getHeaders()
 
@@ -110,7 +110,7 @@ async function buscarUsuario (){
 	
 	if (document.getElementById('txtCedula').value != ''){
 		
-		const request = await fetch('api/usuarioGetByCedula/'+ document.getElementById('txtCedula').value, {
+		const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/usuarioGetByCedula/'+ document.getElementById('txtCedula').value, {
 		method: 'GET',
 		headers: getHeaders()
 

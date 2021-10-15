@@ -26,7 +26,7 @@ async function crearProveedor() {
 		return;
 
 	}
-	const request = await fetch('api/addProveedor', {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/addProveedor', {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',

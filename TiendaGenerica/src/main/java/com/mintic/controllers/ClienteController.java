@@ -20,8 +20,6 @@ public class ClienteController {
 	@Autowired
 	IClienteDAO iClienteDAO;
 	
-	@Autowired
-	ITipodeDocumentoDAO itipodeDocumentoDAO;
 	
 	
 	@RequestMapping(value= "api/clientes", method = RequestMethod.GET)
@@ -65,28 +63,7 @@ public class ClienteController {
 		
 	}
 	
-	
-	@RequestMapping(value= "api/TipoDeDocumentos/{id}", method = RequestMethod.GET)
-	public TipodeDocumento tipoDeDocumento (@PathVariable Long id) {
-		
-		
-		
-		return itipodeDocumentoDAO.getTipodeDocumentoById(id);
-		
-		
-	}
-	
-	@RequestMapping(value= "api/TipoDeDocumento/", method = RequestMethod.GET)
-	public List<TipodeDocumento> listaTipoDeDocumento () {
-		
-		
-		
-		return itipodeDocumentoDAO.getTipoDeDocumento();
-		
-		
-	}
-	
-	
+
 	@RequestMapping(value= "api/clientesByCedula/{cedula}", method = RequestMethod.GET)
 	public List<Cliente> clientesByCedula (@PathVariable String cedula) {
 		

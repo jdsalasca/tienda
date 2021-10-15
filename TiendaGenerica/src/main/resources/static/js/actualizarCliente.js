@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 
 async function cargarCliente(id) {
-	const request = await fetch('api/clientesById/'+id, {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/clientesById/'+id, {
 		method: 'GET',
 		headers: {
 			'Accept': 'application/json',
@@ -65,7 +65,7 @@ async function actualizarCliente () {
 	
 	
 
-		const request = await fetch('api/updateCliente/'+ id, {
+		const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/updateCliente/'+ id, {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -94,7 +94,7 @@ async function cargarTipoDeDocumento() {
 
 
 
-	const request = await fetch('/api/TipoDeDocumento/', {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/TipoDeDocumento/', {
 		method: 'GET',
 		headers: getHeaders()
 

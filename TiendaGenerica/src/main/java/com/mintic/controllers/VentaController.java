@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.dao.IVentaDAO;
@@ -52,17 +53,19 @@ public class VentaController {
 	
 	
 	@RequestMapping(value= "api/VentaById/{id}", method = RequestMethod.GET)
-	public Venta proveedorById ( @PathVariable Long id) {
+	public Venta ventaById ( @PathVariable Long id) {
 		
 return iVentaDAO.FindById(id);
 	}
 	
 	@RequestMapping(value= "api/FindVentasForClient/{id}", method = RequestMethod.GET)
 	public List<Venta> VentasByName (@PathVariable Long id) {
+		Cliente c = new Cliente ();
+		c.setId(id);
 		
 		
 		
-		return iVentaDAO.VentasByClientId(id);
+		return iVentaDAO.VentasByClientId(c);
 	}
 	
 	

@@ -26,6 +26,7 @@ public class ClienteDAOImp implements IClienteDAO{
 	private EntityManager entityManager;
 
 	@Override
+	@Transactional
 	public List<Cliente> getCliente() {
 		String query = "FROM Cliente";
 		List<Cliente> list = entityManager.createQuery(query).getResultList();

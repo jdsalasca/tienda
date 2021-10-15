@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 
 async function cargarUsuario(id) {
-	const request = await fetch('api/ProveedorById/'+id, {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/ProveedorById/'+id, {
 		method: 'GET',
 		headers: {
 			'Accept': 'application/json',
@@ -55,7 +55,7 @@ async function actualizarProveedor () {
 	
 	
 
-		const request = await fetch('api/UpdateProveedor/'+ id, {
+		const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/UpdateProveedor/'+ id, {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',

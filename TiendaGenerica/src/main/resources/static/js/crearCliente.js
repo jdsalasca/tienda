@@ -28,7 +28,7 @@ async function crearCliente() {
 		return;
 
 	}
-	const request = await fetch('api/addCliente', {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/addCliente', {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',
@@ -38,7 +38,7 @@ async function crearCliente() {
 
 	});
 
-	window.location.href = 'usuarios.html'
+	window.location.href = 'clientes.html'
 }
 
 
@@ -58,7 +58,7 @@ async function cargarTipoDeDocumento() {
 
 
 
-	const request = await fetch('/api/TipoDeDocumento/', {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/TipoDeDocumento/', {
 		method: 'GET',
 		headers: getHeaders()
 

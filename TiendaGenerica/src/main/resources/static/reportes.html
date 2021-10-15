@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Dashboard</title>
+<title>Reportes</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -39,7 +39,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
+				href="#">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -52,7 +52,7 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index.html">
+			<li class="nav-item"><a class="nav-link" href="#">
 					<i class="fas fa-fw fa-tachometer-alt"></i> <span>Bienvenido</span>
 			</a></li>
 
@@ -74,8 +74,9 @@
 						<h6 class="collapse-header">Listas</h6>
 						<a class="collapse-item" href="usuarios.html">Usuarios</a> <a
 							class="collapse-item" href="clientes.html">Clientes</a> <a
-							class="collapse-item" href="proveedores.html">Proveedores</a> <a
-							class="collapse-item" href="utilities-other.html">Other</a>
+							class="collapse-item" href="proveedores.html">Proveedores</a> 
+							<a
+							class="collapse-item" href="productos.html">productos</a>
 					</div></li>
 								<li class="nav-item"><a class="nav-link" href="importarProductos.html">
 					<i class="fas fa-file-import"></i> <span> importar productos</span>
@@ -83,7 +84,9 @@
 											<li class="nav-item"><a class="nav-link" href="moduloVentas.html">
 					<i class="fas fa-shopping-cart"></i> <span> modulo de ventas</span>
 			</a></li>
-					
+														<li class="nav-item"><a class="nav-link" href="reportes.html">
+					<i class="fas fa-list"></i> <span> modulo informes</span>
+			</a></li>
 					
 
 			<!-- Divider -->
@@ -115,21 +118,7 @@
 						</button>
 					</form>
 
-					<!-- Topbar Search -->
-					<form
-						class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-						<div class="input-group">
-							<input type="text" class="form-control bg-light border-0 small"
-								placeholder="Search for..." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
 
-								<button class="btn btn-primary" type="button">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-						</div>
-					</form>
 
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
@@ -195,12 +184,12 @@
 								<button type="submit" class="btn btn-primary mb-2"
 									onclick="cargarClientes()">Reporte Clientes</button>
 								<div class="form-group mx-sm-3 mb-2">
-									<label for="txtCedula2" class="sr-only">cedula</label> <input
+									 <input
 										type="text" class="form-control" id="txtCedula"
-										placeholder="Cedula Cliente">
+										placeholder="Id Cliente">
 								</div>
 								<button type="submit" class="btn btn-primary mb-2"
-									onclick="buscarUsuario()">Reporte venta por cliente</button>
+									onclick="cargarVentasByClientId()">Reporte venta por cliente</button>
 							</div>
 
 
@@ -284,12 +273,6 @@
 		<!-- Custom scripts for all pages-->
 		<script src="js/sb-admin-2.min.js"></script>
 
-		<!-- Page level plugins -->
-		<script src="vendor/chart.js/Chart.min.js"></script>
-
-		<!-- Page level custom scripts -->
-		<script src="js/demo/chart-area-demo.js"></script>
-		<script src="js/demo/chart-pie-demo.js"></script>
 		<script src="js/reportes.js"></script>
 		
 </body>

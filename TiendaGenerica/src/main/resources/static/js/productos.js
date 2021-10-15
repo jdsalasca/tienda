@@ -21,7 +21,7 @@ function ActualizarEmailDelUsuario() {
 async function cargarProveedores() {
 
 
-	const request = await fetch('api/Proveedores', {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/Proveedores', {
 		method: 'GET',
 		headers: getHeaders()
 
@@ -56,7 +56,7 @@ async function eliminarProveedor(id) {
 
 	}
 
-	const request = await fetch('api/DeleteProveedor/' + id, {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/DeleteProveedor/' + id, {
 		method: 'DELETE',
 		headers: getHeaders()
 
@@ -112,7 +112,7 @@ async function buscarProveedores (){
 	
 	if (document.getElementById('txtNit').value != ''){
 		
-	const request = await fetch('api/ProveedorByNit/'+ document.getElementById('txtNit').value, {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/ProveedorByNit/'+ document.getElementById('txtNit').value, {
 		method: 'GET',
 		headers: getHeaders()
 

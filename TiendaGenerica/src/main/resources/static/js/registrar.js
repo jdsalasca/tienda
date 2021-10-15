@@ -21,7 +21,7 @@ async function registrarUsuario() {
 	
 
 
-	const request = await fetch('api/usuario', {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/usuario', {
 		method: 'POST',
 		headers: {
 			'Accept': 'application/json',

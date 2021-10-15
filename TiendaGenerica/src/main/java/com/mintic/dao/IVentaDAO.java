@@ -2,6 +2,7 @@ package com.mintic.dao;
 
 import java.util.List;
 
+import com.mintic.entities.Cliente;
 import com.mintic.entities.DetalleVenta;
 import com.mintic.entities.Venta;
 
@@ -21,7 +22,7 @@ public interface IVentaDAO {
 	Venta FindById (Long id);
 
 
-	List<Venta> VentasByClientId(Long id);
+	List<Venta> VentasByClientId(Cliente id);
 	
 	
 
