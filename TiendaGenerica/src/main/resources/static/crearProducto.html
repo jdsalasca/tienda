@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>creacion de cliente</title>
+<title>creacion de producto</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -41,42 +41,35 @@
 							<div class="col-lg-6">
 								<div class="p-5">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">Crear Cliente :D</h1>
+										<h1 class="h4 text-gray-900 mb-4">Crear Producto :D</h1>
 									</div>
 									<form class="user">
 
 										<div class="form-group">
-											<select id="txtTipoDocumento" class="form-select">
+											<select id="txtProveedor" class="form-select">
 												<option></option>
 											</select>
 
 										</div>
 										<div class="form-group">
 											<input type="text" class="form-control form-control-user"
-												id="txtCedula" placeholder="Numero de Documento">
+												id="txtNombre" placeholder="Nombre del producto">
 										</div>
 										<div class="form-group">
 											<input type="email" class="form-control form-control-user"
-												id="txtEmail" aria-describedby="emailHelp"
-												placeholder="Ingresa tu email">
+												id="txtPrecioCompra" aria-describedby="emailHelp"
+												placeholder="Ingresa precio Compra">
 										</div>
 
 										<div class="form-group">
 											<input required type="text"
-												class="form-control form-control-user" id="txtNombre"
-												placeholder="Nombre Completo">
+												class="form-control form-control-user" id="txtIvaCompra"
+												placeholder="Ingresa Iva Compra">
 										</div>
-										<div class="form-group">
-											<input type="text" class="form-control form-control-user"
-												id="txtDireccion" placeholder="Direccion">
-										</div>
-										<div class="form-group">
-											<input type="text" class="form-control form-control-user"
-												id="txtTelefono" placeholder="Telefono">
-										</div>
+
 								</div>
 								<a href="#" onclick="crearCliente()"
-									class="btn btn-primary btn-user btn-block"> crear Cliente </a>
+									class="btn btn-primary btn-user btn-block"> crear Producto </a>
 								</form>
 
 
@@ -89,11 +82,10 @@
 				</div>
 			</div>
 
-		</div>
+		</div>	
 
 	</div>
 
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
@@ -104,7 +96,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
-	<script src="js/crearCliente.js"></script>
+	<script src="js/crearProducto.js"></script>
 
 </body>
 

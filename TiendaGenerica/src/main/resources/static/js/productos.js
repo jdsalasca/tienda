@@ -34,7 +34,7 @@ async function cargarProductos() {
 	let listadohtml = '';
 	for (let producto of productos) {
 		let botonEliminar = '<a href="#" onclick="eliminarProducto(' + producto.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
-		let botonActualizar = '<a href="#" onclick= "actualizarProveedor(' + producto.id + ')"class="btn btn-light btn-icon-split"><span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span><span class="text">  Actualizar</span></a>'
+		let botonActualizar = '<a href="#" onclick= "actualizarProducto(' + producto.id + ')"class="btn btn-light btn-icon-split"><span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span><span class="text">  Actualizar</span></a>'
 
 		let productohtml = '<tr><td>' + producto.id + '</td><td>' + producto.nombre + '</td><td>' + producto.ivaCompra + '</td><td>' + producto.precioCompra + '</td><td>' + producto.idProveedor.id+' - '+ producto.idProveedor.nombre + '</td><td>' + botonEliminar + '' + botonActualizar + '</td></tr>'
 		listadohtml += productohtml;
@@ -67,28 +67,28 @@ async function eliminarProducto(id) {
 
 }
 
-async function actualizarProveedor(id) {
+function actualizarProducto(id) {
 
-	if (!confirm('desea actualizar este Proveedor?')) {
+	if (!confirm('desea actualizar este producto?')) {
 		return;
 
 	}
 
 
-	window.location.href = 'actualizarProveedor.html?id=' + id;
+	window.location.href = 'actualizarProducto.html?id=' + id;
 
 
 }
 
-async function crearProveedor() {
+async function crearProducto() {
 
-	if (!confirm('desea crear un nuevo Proveedor?')) {
+	if (!confirm('desea crear un nuevo Producto?')) {
 		return;
 
 	}
 
 
-	window.location.href = 'crearProveedor.html?id=' + 'newUser';
+	window.location.href = 'crearProducto.html?id=' + 'newProduct';
 
 
 }
@@ -105,39 +105,40 @@ function getHeaders() {
 }
 
 
-async function buscarProveedores (){
+async function buscarProducto (){
 	
 	try {
 	
 	if (document.getElementById('txtNit').value != ''){
 		
-	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/ProveedorByNit/'+ document.getElementById('txtNit').value, {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/FindByNameProducto/'+ document.getElementById('txtNit').value, {
 		method: 'GET',
 		headers: getHeaders()
 
 	});
 		
-	const proveedores = await request.json();
+	const productos = await request.json();
 
-	console.log(proveedores);
+	console.log(productos);
 
 
 	let listadohtml = '';
-	for (let proveedor of proveedores) {
-		let botonEliminar = '<a href="#" onclick="eliminarProveedor(' + proveedor.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
-		let botonActualizar = '<a href="#" onclick= "actualizarProveedor(' + proveedor.id + ')"class="btn btn-light btn-icon-split"><span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span><span class="text">  Actualizar</span></a>'
-		let cedulaTexto = proveedor.numeroDocumento == null ? '-' : proveedor.numeroDocumento;
+	for (let producto of productos) {
+		let botonEliminar = '<a href="#" onclick="eliminarProducto(' + producto.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+		let botonActualizar = '<a href="#" onclick= "actualizarProveedor(' + producto.id + ')"class="btn btn-light btn-icon-split"><span class="icon text-gray-600"><i class="fas fa-arrow-right"></i></span><span class="text">  Actualizar</span></a>'
 
-		let clientehtml = '<tr><td>' + proveedor.nit + '</td><td>' + proveedor.ciudad + '</td><td>' + proveedor.direccion + '</td><td>' + proveedor.nombre + '</td><td>' + proveedor.telefono + '</td><td>' + proveedor.email + '</td><td>' + botonEliminar + '' + botonActualizar + '</td></tr>'
-		listadohtml += clientehtml;
+		let productohtml = '<tr><td>' + producto.id + '</td><td>' + producto.nombre + '</td><td>' + producto.ivaCompra + '</td><td>' + producto.precioCompra + '</td><td>' + producto.idProveedor.id+' - '+ producto.idProveedor.nombre + '</td><td>' + botonEliminar + '' + botonActualizar + '</td></tr>'
+		listadohtml += productohtml;
 
 
 
 	}
 	document.querySelector('#proveedores tbody').outerHTML = listadohtml;
 
+
+
 }else {
-		cargarProveedores()
+		cargarProductos();
 	}
 	}catch {
 		

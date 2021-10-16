@@ -14,7 +14,7 @@ function ActualizarEmailDelUsuario() {
 
 	document.getElementById('txt-email-usuario').outerHTML = localStorage.email;
 
-
+datosUsuarioParaDetalleVenta = {}
 
 }
 
@@ -201,7 +201,7 @@ yes.onclick = function() {
 
 
 		let totalSinIva = Number(values[i].precioCompra) * amountofProducts
-		let totalConIva = Number(values[i].precioCompra) * amountofProducts + Number(values[i].ivaCompra)
+		let totalConIva = (Number(values[i].precioCompra)+ Number(values[i].ivaCompra)) * amountofProducts 
 
 		let datos = {}
 		datos.idProducto = values[i].id
@@ -334,6 +334,7 @@ async function SelecionarCliente(id) {
 
 	});
 	const cliente = await request.json();
+	
 
 
 	localStorage.nombreCliente = cliente.nombre

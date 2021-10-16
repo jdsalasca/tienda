@@ -165,7 +165,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Productos (Aun no terminada)</h1>
+					<h1 class="h3 mb-2 text-gray-800">Productos</h1>
 					<p class="mb-4">
 						Aca puedes hacer una gestion de Productos y decidir si los quieres
 						borrar o actualizar <a target="_blank"></a>
@@ -176,9 +176,9 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3 d-flex justify-content-between">
 							<button type="button" class="btn btn-success"
-								onclick="crearProveedor()">+ Agregar Producto</button>
+								onclick="crearProducto()">+ Agregar Producto</button>
 							<h6 class="m-0 font-weight-bold text-primary">Gestion de
-								Proveedores</h6>
+								productos</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -188,14 +188,13 @@
 										<div class="form-group mb-2">
 											<label for="staticEmail2" class="sr-only">Email</label> <input
 												type="text" readonly class="form-control-plaintext"
-												id="staticEmail2" value="ingrese el nit a buscar:">
+												id="staticEmail2" value="ingrese el nombre:">
 										</div>
 										<div class="form-group mx-sm-3 mb-2">
-											<label for="txtCedula2" class="sr-only">Nit</label>
 											<input type="text" class="form-control"
-												id="txtNit" placeholder="Cedula">
+												id="txtNit" placeholder="nombre producto">
 										</div>
-										<button type="submit" class="btn btn-primary mb-2" onclick= "buscarProveedores()">Buscar nit</button>
+										<button type="submit" class="btn btn-primary mb-2" onclick= "buscarProducto()">Buscar producto</button>
 										
 									<thead>
 										<tr><th>id producto</th>
