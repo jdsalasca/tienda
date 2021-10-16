@@ -14,7 +14,7 @@ public interface IVentaDAO {
 
 	void eliminar(Long id);
 
-	void registrar(Venta venta);
+	Long registrar(Venta venta);
 
 
 	void actualizar(Venta venta);
@@ -23,6 +23,7 @@ public interface IVentaDAO {
 
 
 	List<Venta> VentasByClientId(Cliente id);
+	
 	
 	
 

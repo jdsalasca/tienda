@@ -6,7 +6,7 @@ $(document).ready(function() {
 	ActualizarEmailDelUsuario()*/
 });
 
-validadordeventa = 0;
+let ventasinprocesar = 0;
 
 let listafactura = '';
 let listafacturatext = '';
@@ -180,211 +180,304 @@ async function agregarProducto(id) {
 
 
 }
+let listadeDetalleVentas = []
 let totalSinIvaTotal = 0
 let totalConIvaTotal = 0
 var yes = document.getElementById("createFactura");
 
-
+let ventasForInvoce = []
 yes.onclick = function() {
 
 	for (i in values) {
 		amountofProducts = 1;
 
 		amountofProducts = Number(document.getElementById('determinarCantidad ' + values[i].id + '').value);
-		if (amountofProducts == 0)  
-			{
-				amountofProducts = 1
-			}
-
-			let totalSinIva = Number(values[i].precioCompra) * amountofProducts
-			let totalConIva = Number(values[i].precioCompra) * amountofProducts + Number(values[i].ivaCompra)
-
-
-
-
-			let cantidad = '<p>' + amountofProducts + '</p>'
-			console.log(amountofProducts)
-
-
-			let productofactura = '<tr><td>' + values[i].nombre + '</td><td>' + cantidad + '</td><td>' + values[i].precioCompra + '</td><td>' + totalSinIva + '</td></tr>'
-			listafacturatext += productofactura
-			totalSinIvaTotal += totalSinIva
-			totalConIvaTotal += totalConIva
+		if (amountofProducts == 0) {
+			amountofProducts = 1
 		}
 
-		totalSinIvaTotalPrint = '<p class="font-monospace fs-6">El total Sin Iva es: ' + totalSinIvaTotal + '</p>'
-
-		totalConIvaTotalPrint = '<p class="font-monospace fs-6">El total Con Iva es: ' + totalConIvaTotal + '</p>'
 
 
-		document.querySelector('#txtFacturaSinIva ').outerHTML = totalSinIvaTotalPrint
-		document.querySelector('#txtFacturaConIva ').outerHTML = totalConIvaTotalPrint
 
-		document.querySelector('#factura_text tbody').outerHTML = listafacturatext
+
+		let totalSinIva = Number(values[i].precioCompra) * amountofProducts
+		let totalConIva = Number(values[i].precioCompra) * amountofProducts + Number(values[i].ivaCompra)
+
+		let datos = {}
+		datos.idProducto = values[i].id
+
+
+		datos.cantidadProducto = amountofProducts
+		datos.valorIva = values[i].ivaCompra
+
+		datos.valorTotal = totalConIva
+
+		listadeDetalleVentas.push(datos)
+
+		datos.valorSinIva = totalSinIva
+		datos.nombreProducto = values[i].nombre
+		datos.PrecioProducto = values[i].precioCompra
+
+		ventasForInvoce.push(datos)
+
+		let cantidad = '<p>' + amountofProducts + '</p>'
+		console.log(amountofProducts)
+
+
+		let productofactura = '<tr><td>' + values[i].nombre + '</td><td>' + cantidad + '</td><td>' + values[i].precioCompra + '</td><td>' + totalSinIva + '</td></tr>'
+		listafacturatext += productofactura
+		totalSinIvaTotal += totalSinIva
+		totalConIvaTotal += totalConIva
 	}
 
 
 
 
+	totalSinIvaTotalPrint = '<p class="font-monospace fs-6">El total Sin Iva es: ' + totalSinIvaTotal + '</p>'
 
-	function checkExistence(arr, val) {
-		return arr.some(function(arrVal) {
-			return val === arrVal;
-		});
-	}
-	async function buscarUsuarioPorNombre() {
+	totalConIvaTotalPrint = '<p class="font-monospace fs-6">El total Con Iva es: ' + totalConIvaTotal + '</p>'
 
 
+	document.querySelector('#txtFacturaSinIva ').outerHTML = totalSinIvaTotalPrint
+	document.querySelector('#txtFacturaConIva ').outerHTML = totalConIvaTotalPrint
 
-		const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/FindByNameUsuario/' + document.getElementById('txtUsuario').value, {
-			method: 'GET',
-			headers: getHeaders()
-
-		});
-		const usuarios = await request.json();
+	document.querySelector('#factura_text tbody').outerHTML = listafacturatext
+	ventasinprocesar += 1;
+}
 
 
 
 
 
-		let listadohtml = '';
-		for (let usuario of usuarios) {
-			console.log(usuario)
-			let botonSeleccionar = '<a href="#" onclick= "SelecionarUsuario(' + usuario.id + ')"class="btn btn-success btn-icon-split"><span class="text">  Selecionar</span></a>'
 
-
-			let productohtml = '<tr><td>' + usuario.nombre + '</td><td>' + usuario.nick + '</td><td>' + botonSeleccionar + '</td></tr>'
-			listadohtml += productohtml;
-
-
-
-		}
-		document.querySelector('#usuarios_searchbar tbody').outerHTML = listadohtml;
+function checkExistence(arr, val) {
+	return arr.some(function(arrVal) {
+		return val === arrVal;
+	});
+}
+async function buscarUsuarioPorNombre() {
 
 
 
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/FindByNameUsuario/' + document.getElementById('txtUsuario').value, {
+		method: 'GET',
+		headers: getHeaders()
 
-	}
-
-	async function buscarClientePorNombre() {
-
-
-
-		const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/FindByNameCliente/' + document.getElementById('txtCliente').value, {
-			method: 'GET',
-			headers: getHeaders()
-
-		});
-		const clientes = await request.json();
+	});
+	const usuarios = await request.json();
 
 
 
 
-		let listadohtml = '';
-		for (let cliente of clientes) {
-			let botonSeleccionar = '<a id="seleccionar"href="#" onclick= "SelecionarCliente(' + cliente.id + ')"class="btn btn-success btn-icon-split"><span class="text">  Selecionar</span></a>'
+
+	let listadohtml = '';
+	for (let usuario of usuarios) {
+		console.log(usuario)
+		let botonSeleccionar = '<a href="#" onclick= "SelecionarUsuario(' + usuario.id + ')"class="btn btn-success btn-icon-split"><span class="text">  Selecionar</span></a>'
 
 
-			let productohtml = '<tr><td>' + cliente.id + '</td><td>' + cliente.nombre + '</td><td>' + botonSeleccionar + '</td></tr>'
-			listadohtml += productohtml;
-
-
-
-		}
-		document.querySelector('#clientes_searchbar tbody').outerHTML = listadohtml;
-
-
-	}
-
-	let datos_venta = {};
-	let detalleventa = []
-	ClienteExistente = []
-
-	/*Estas funciones son para llamar al cliente y al usuario que van a participar de la compra*/
-	async function SelecionarCliente(id) {
-
-
-		const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/clientesById/' + id, {
-			method: 'GET',
-			headers: getHeaders()
-
-		});
-		const cliente = await request.json();
-
-
-
-		validadordeventa = 1;
-		if (ClienteExistente.length >= 1) {
-			alert("ya hay un cliente")
-			return;
-		}
-		ClienteExistente.push(cliente)
-
-
-		datos_venta.idCliente = cliente.id
-
-
-
+		let productohtml = '<tr><td>' + usuario.nombre + '</td><td>' + usuario.nick + '</td><td>' + botonSeleccionar + '</td></tr>'
+		listadohtml += productohtml;
 
 
 
 	}
-	UsuarioExistente = []
-
-	async function SelecionarUsuario(id) {
-
-
-		const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/usuarioGet/' + id, {
-			method: 'GET',
-			headers: getHeaders()
-
-		});
-		const usuario = await request.json();
+	document.querySelector('#usuarios_searchbar tbody').outerHTML = listadohtml;
 
 
 
-		if (UsuarioExistente.length >= 1) {
-			alert("ya hay un Usuario")
-			return;
-		}
-		UsuarioExistente.push(usuario)
-		datos_venta.idUsuario = usuario.id
 
+}
+
+async function buscarClientePorNombre() {
+
+
+
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/FindByNameCliente/' + document.getElementById('txtCliente').value, {
+		method: 'GET',
+		headers: getHeaders()
+
+	});
+	const clientes = await request.json();
+
+
+
+
+	let listadohtml = '';
+	for (let cliente of clientes) {
+		let botonSeleccionar = '<a id="seleccionar"href="#" onclick= "SelecionarCliente(' + cliente.id + ')"class="btn btn-success btn-icon-split"><span class="text">  Selecionar</span></a>'
+
+
+		let productohtml = '<tr><td>' + cliente.id + '</td><td>' + cliente.nombre + '</td><td>' + botonSeleccionar + '</td></tr>'
+		listadohtml += productohtml;
 
 
 
 	}
-
-	async function crearVenta() {
-
-		datos_venta.valorVenta = totalSinIvaTotal
-		datos_venta.totalVenta = totalConIvaTotal
-
-		if (ventaprocesada == 0) {
-			alert("faltan datos para generar la factura :3")
-			return;
-
-		}
+	document.querySelector('#clientes_searchbar tbody').outerHTML = listadohtml;
 
 
-		const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/addVenta', {
+}
+
+let datos_venta = {};
+let detalleventa = []
+ClienteExistente = []
+
+/*Estas funciones son para llamar al cliente y al usuario que van a participar de la compra*/
+async function SelecionarCliente(id) {
+	ventasinprocesar += 1;
+
+
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/clientesById/' + id, {
+		method: 'GET',
+		headers: getHeaders()
+
+	});
+	const cliente = await request.json();
+
+
+	localStorage.nombreCliente = cliente.nombre
+	localStorage.direccionCliente = cliente.direccion
+	localStorage.celularCliente = cliente.telefono
+	localStorage.emailCliente = cliente.email
+
+
+
+	if (ClienteExistente.length >= 1) {
+		alert("ya hay un cliente")
+		return;
+	}
+	ClienteExistente.push(cliente)
+
+
+	datos_venta.idCliente = cliente.id
+
+
+
+
+
+
+}
+UsuarioExistente = []
+
+async function SelecionarUsuario(id) {
+
+	ventasinprocesar += 1;
+
+
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/usuarioGet/' + id, {
+		method: 'GET',
+		headers: getHeaders()
+
+	});
+	const usuario = await request.json();
+
+
+
+	if (UsuarioExistente.length >= 1) {
+		alert("ya hay un Usuario")
+		return;
+	}
+	UsuarioExistente.push(usuario)
+	datos_venta.idUsuario = usuario.id
+
+
+
+
+}
+
+async function crearVenta() {
+
+	datos_venta.valorVenta = totalSinIvaTotal
+	datos_venta.totalVenta = totalConIvaTotal
+
+
+	localStorage.totalConIva = totalConIvaTotal
+	localStorage.totalSinIva = totalSinIvaTotal
+
+	if (ventasinprocesar <= 2) {
+		alert("faltan datos para generar la factura :3")
+		return;
+
+	}
+
+
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/addVenta', {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(datos_venta)
+
+
+
+	});
+
+	const answer = await request.text();
+
+	localStorage.idventa = answer;
+	localStorage.totalVenta = totalConIvaTotal;
+	console.log(datos_venta)
+
+	alert("Venta Creada!")
+	totalSinIvaTotal = null;
+
+	totalConIvaTotal = null;
+
+	ventasinprocesar = 0;
+
+	newDetalleVenta()
+
+	localStorage.setItem("datosVenta", ventasForInvoce);
+	localStorage.setItem("data", JSON.stringify(ventasForInvoce));
+
+	var answer_facture;
+	var r = confirm("Deseas imprimir tu factura?!");
+	if (r == true) {
+		window.location.href = 'imprimirfactura.html';
+	} else {
+		alert("weno :3")
+		return;
+	}
+
+
+}
+
+async function newDetalleVenta() {
+
+	for (i in listadeDetalleVentas) {
+
+		envioDetalleVenta = {}
+		envioDetalleVenta.idVenta = localStorage.idventa
+		envioDetalleVenta.valorTotal = localStorage.totalVenta
+		envioDetalleVenta.idProducto = listadeDetalleVentas[i].idProducto
+		envioDetalleVenta.cantidadProducto = listadeDetalleVentas[i].cantidadProducto
+		envioDetalleVenta.valorIva = listadeDetalleVentas[i].valorIva
+		envioDetalleVenta.valorVenta = listadeDetalleVentas[i].valorTotal
+
+
+
+
+
+
+		const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/addDetalleVenta', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(datos_venta)
+			body: JSON.stringify(envioDetalleVenta)
+
+
 
 		});
 
-		alert("Venta Creada!")
-		datos_venta.idcliente = 999999
-		totalSinIvaTotal = null;
-
-		totalConIvaTotal = null;
-
-		ventaprocesada = 1;
 
 
 	}
+
+
+
+}
 

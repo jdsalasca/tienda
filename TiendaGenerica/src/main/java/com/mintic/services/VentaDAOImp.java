@@ -1,4 +1,5 @@
 package com.mintic.services;
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -39,10 +40,26 @@ public class VentaDAOImp implements IVentaDAO {
 	}
 
 	@Override
-	public void registrar(Venta venta) {
+	public Long registrar(Venta venta) {
 		entityManager.merge(venta);
 		
+		String nativeQuery = "SELECT  MAX(id)  FROM venta";
+		BigInteger id =(BigInteger) entityManager.createNativeQuery(nativeQuery).getResultList().get(0);
+		Long id_long = id.longValue();
+		
+		return id_long;
+		
+
+
+
+
+			
 	}
+	
+
+
+	
+	
 
 	@Override
 	public void actualizar(Venta venta) {

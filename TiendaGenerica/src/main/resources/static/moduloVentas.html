@@ -361,7 +361,6 @@
 										</thead>
 
 										<tbody>
-											<tr></tr><td> ejemplo </td><td> ejemplo</td><td> ejemplo </td>
 
 										</tbody>
 										
@@ -383,8 +382,6 @@
 									</form>
 									<hr>
 
-									<button id="generarFactura" type="button" class="btn btn-success" >imprimir
-										factura</button>
 									<button id="generarFactura" type="button" class="btn btn-success" onclick="crearVenta()" >Crear
 										venta</button>
 
@@ -456,111 +453,6 @@
 	
 	<script src="https://unpkg.com/jspdf-invoice-template@1.3.1/dist/index.js"></script>
 	
-	<script type="text/javascript">
-	
-	var today = new Date();
-	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	var imagen = "img/cute.png"
-		let totalFactura = 0
-	
-	let btn_factura = document.getElementById('generarFactura').addEventListener('click', (e) => {
-
-
-			totalFactura += totalConIvaTotal
-			
-			console.log("el valor a pasar es:  " + totalFactura)
-			
-			
-
-				var pdfObject = jsPDFInvoiceTemplate.default(props); //returns number of pages created
-				console.log("Object created", pdfObject);
-			
-		
-		
-	});
-	
-
-	var props = {			
-	    outputType: jsPDFInvoiceTemplate.OutputType.Save,
-	    returnJsPDFDocObject: true,
-	    fileName: "Recibo",
-	    orientationLandscape: false,
-	    logo: {
-	        src: imagen,
-	        width: 24, //aspect ratio = width/height
-	        height: 24,
-	        margin: {
-	            top: 0, //negative or positive num, from the current position
-	            left: 0 //negative or positive num, from the current position
-	        }
-	    },
-	    business: {
-	        name: "Tienda Tecnologia",
-	        address: "Calle 42a#8a-24 Tunja, Boyaca",
-	        phone: "310 8539630",
-	        email: "jdsalasc@unal.edu.co",
-	        email_1: "jdsalasc@outlook.es",
-	        website: "soon as possible!",
-	    },
-	    contact: {
-	        label: "Invoice issued for:",
-	        name: "Client Name",
-	        address: "direccion",
-	        phone: "numero",
-	        email: "email del cliente",
-	        otherInfo: "www.website.al",
-	    },
-	    invoice: {
-	        label: "factura #: ",
-	        num: 19,
-	        invDate: "Dia: "+date,
-	        invGenDate: "Hora: "+time,
-	        headerBorder: false,
-	        tableBodyBorder: false,
-	        header: ["ID", "Nombre", "precio Unitario", "cantidad", "Unit", "Total"],
-	        table: Array.from(Array(3), (item, index)=>([
-	            index + 1,
-	            "falta esta parte",
-	            200.5,
-	            4.5,
-	            "m2",
-	            400.5
-	        ])),
-	        
-	        invTotalLabel: "Total: ",
-	        invTotal:'probando  '+0,
-	        invCurrency: 'holaaa',
-	        row1: {
-	            col1: ' + IVA:',
-	            col2: '',
-	            col3: '%',
-	            style: {
-	                fontSize: 10 //optional, default 12
-	            }
-	        },
-	        row2: {
-	            col1: 'SubTotal:',
-	            col2: 'Por calcular',
-	            col3: '',
-	            style: {
-	                fontSize: 10 //optional, default 12
-	            }
-	        },
-	        invDescLabel: "Nota de la tienda",
-	        invDesc: "Muchas gracias por comprar con nosotros, nos haces muy felices, esperamos tenerte pronto de nuevo por aqui, que tengas un lindo dia y que distrutes tu compra :3",
-	    },
-	    footer: {
-	        text: "Los productos tienen garantia de tres meses",
-	    },
-	    pageEnable: true,
-	    pageLabel: "Page ",
-	};
-	 $( "#seleccionar" ).click(function() {
-		    $( "#seleccionar" ).css('background', 'blue');
-		  });
-		
-	</script>
 
 
 </body>

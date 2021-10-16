@@ -83,6 +83,13 @@ public class Producto {
 	public Producto() {
 		super();
 	}
+
+	public Producto(Long id) {
+		super();
+		this.id = id;
+	}
+	
+	
     
     
 

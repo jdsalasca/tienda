@@ -30,9 +30,12 @@ public class VentaController {
 	
 	
 	@RequestMapping(value= "api/addVenta", method = RequestMethod.POST)
-	public void addVenta (@RequestBody Venta venta) {
+	public Long addVenta (@RequestBody Venta venta) {
 		
-		iVentaDAO.registrar(venta);
+		
+		
+		
+		return iVentaDAO.registrar(venta);
 	}
 	
 	

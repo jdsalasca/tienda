@@ -61,6 +61,12 @@ public class ProductoController {
 		
 		return iProductoDAO.FindById(id);
 	}
+	
+	@RequestMapping(value= "api/deleteIdProducto/{id}", method = RequestMethod.DELETE)
+	public void deleteProduct (@PathVariable Long id){
+		
+				iProductoDAO.eliminar(id);
+	}
 		
 
 		

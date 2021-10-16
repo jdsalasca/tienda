@@ -40,9 +40,12 @@
 						<div class="row">
 							<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
 							<div class="col-lg-6">
-							
+
 								<div class="p-5">
 									<div class="text-center">
+										<a class="nav-link" href="usuarios.html"> <i
+											class="fas fa-arrow-circle-left"></i> <span> Volver </span>
+										</a>
 										<h1 class="h4 text-gray-900 mb-4">Importacion de
 											productos :3</h1>
 									</div>
@@ -54,19 +57,22 @@
 
 										<button id="buttonCSV"
 											class="btn btn-primary btn-user btn-block">Read CSV</button>
-
-										<hr>
-										<button class="btn btn-danger btn-user  btn-block">Cancelar</button>
-										<hr>
+											<hr>
 
 
-										<table id="data_csv" class="table table-bordered" width="100%"
-											cellspacing="0"></table>
-										<hr>
+
+											<hr>
+											<button class="btn btn-danger btn-user  btn-block">Cancelar</button>
+											<hr>
 
 
-										<button class="btn btn-info btn-user  btn-block"
-											id="buttonimportCSV">importar</button>
+											<table id="data_csv" class="table table-bordered"
+												width="100%" cellspacing="0"></table>
+											<hr>
+
+
+											<button class="btn btn-info btn-user  btn-block"
+												id="buttonimportCSV">importar</button>
 									</form>
 
 
@@ -161,6 +167,17 @@ let btn_dataBase = document.getElementById('buttonimportCSV').addEventListener('
 		download: true,
 		header: true,
 		complete: async function (results) {
+			
+			
+			var answer_happyUser;
+			var r = confirm("Estas segura que deseas agregarlos?");
+			if (r == true) {
+				
+			} else {
+				
+				return;
+			}
+		
 			
 
 		
