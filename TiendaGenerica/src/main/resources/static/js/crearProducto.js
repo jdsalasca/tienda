@@ -4,21 +4,19 @@
 
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-	cargarTipoDeDocumento()
+	cargarProveedores()
 	//on ready
 });
 
 
-async function crearCliente() {
+async function crearProducto() {
 
 
 	let datos = {};
-	datos.idTipoDocumento = document.getElementById("txtTipoDocumento").value;
-	datos.numeroDocumento = document.getElementById('txtCedula').value;
-	datos.email = document.getElementById('txtEmail').value;
+	datos.idProveedor  = document.getElementById("txtProveedor").value;
 	datos.nombre = document.getElementById('txtNombre').value;
-	datos.direccion = document.getElementById('txtDireccion').value;
-	datos.telefono = document.getElementById('txtTelefono').value;
+	datos.precioCompra = document.getElementById('txtPrecioCompra').value;
+	datos.ivaCompra = document.getElementById('txtIvaCompra').value;
 	
 
 
@@ -54,29 +52,29 @@ function cancelar() {
 
 }
 
-async function cargarTipoDeDocumento() {
+async function cargarProveedores() {
 
 
 
-	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/TipoDeDocumento/', {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/Proveedores/', {
 		method: 'GET',
 		headers: getHeaders()
 
 	});
-	const tipoDeDocumento = await request.json();
+	const proveedores = await request.json();
 
-	console.log(tipoDeDocumento);
+	console.log(proveedores);
 
 
-	let listadohtml = '<option selected>Porfavor Selecciona tu tipo de documento</option>';
+	let listadohtml = '<option selected>Porfavor Selecciona el Proveedor :D</option>';
 
-	for (let tipo of tipoDeDocumento) {
+	for (let proveedor of proveedores) {
 
-		let usuariohtml = '<option value=' + tipo.id + '>' + tipo.tipo + '</option>'
+		let usuariohtml = '<option value=' + proveedor.id + '>' + proveedor.nombre + ' - '+ proveedor.ciudad+ '</option>'
 		listadohtml += usuariohtml;
 
 	}
-	document.querySelector('#txtTipoDocumento option').outerHTML = listadohtml;
+	document.querySelector('#txtProveedor option').outerHTML = listadohtml;
 }
 function getHeaders() {
 	return {

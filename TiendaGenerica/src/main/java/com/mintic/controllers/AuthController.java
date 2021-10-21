@@ -32,6 +32,7 @@ public class AuthController {
 			
 			
 		}
+	
 		return String.valueOf(1);
 	}
 

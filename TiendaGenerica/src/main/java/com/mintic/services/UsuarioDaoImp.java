@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mintic.dao.IUsuarioDao;
+import com.mintic.entities.Cliente;
 import com.mintic.entities.Usuario;
 
 import de.mkammerer.argon2.Argon2;
@@ -102,5 +103,19 @@ public List<Usuario> FindByCedula(String cedula) {
 
 	
 }
+@Override
+public List<Usuario> FindByName(String nombre) {
+String query = "FROM Usuario WHERE nombre LIKE :pattern ";
+List<Usuario> lista = entityManager.createQuery(query)
+        .setParameter("pattern", "%"+ nombre+"%")
+        .setMaxResults(4)
+        .getResultList();
+
+if (lista.isEmpty()) {
+    return null;
+}
+return lista;
+}
 
 }
+

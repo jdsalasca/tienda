@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Importar Productos</title>
+
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/papaparse.min.js"></script>
+
+</head>
+
+<body class="bg-gradient-primary">
+
+	<div class="container">
+
+		<!-- Outer Row -->
+		<div class="row justify-content-center">
+
+			<div class="col-xl-15 col-lg-12 col-md-10">
+
+				<div class="card o-hidden border-0 shadow-lg my-5">
+					<div class="card-body p-0">
+						<!-- Nested Row within Card Body -->
+						<div class="row">
+							<div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+							<div class="col-lg-6">
+
+								<div class="p-5">
+									<div class="text-center">
+										<a class="nav-link" href="usuarios.html"> <i
+											class="fas fa-arrow-circle-left"></i> <span> Volver </span>
+										</a>
+										<h1 class="h4 text-gray-900 mb-4">Importacion de
+											productos :3</h1>
+									</div>
+									<form class="user" id="form">
+										<div class="form-group">
+											<input type="file" class="form-file" id="txtCSVFile"
+												accept=".csv" placeholder="hh">
+										</div>
+
+										<button id="buttonCSV"
+											class="btn btn-primary btn-user btn-block">Read CSV</button>
+											<hr>
+
+
+
+											<hr>
+											<button class="btn btn-danger btn-user  btn-block">Cancelar</button>
+											<hr>
+
+
+											<table id="data_csv" class="table table-bordered"
+												width="100%" cellspacing="0"></table>
+											<hr>
+
+
+											<button class="btn btn-info btn-user  btn-block"
+												id="buttonimportCSV">importar</button>
+									</form>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+
+	try{
+		
+		let btn_upload = document.getElementById('buttonCSV').addEventListener('click', (e) => {
+			
+
+			Papa.parse(document.getElementById('txtCSVFile').files[0], {
+				download: true,
+				header: false,
+				complete:  function (results) {
+					console.log(results)
+					
+					let i = 0;
+
+
+					results.data.map((data, index) => {
+
+						
+					
+						if (i === 0) {
+							let table = document.getElementById('data_csv');
+							generateTableHead(table, data);
+						} else {
+							let table = document.getElementById('data_csv');
+							generateTableRows(table, data);
+						}
+						i++; 
+					});
+					
+
+
+				}
+
+			});
+			e.preventDefault();
+			
+			
+		});
+}catch {
+	alert("No hay documento")
+}
+	
+
+		function generateTableHead(table, data) {
+			let thead = table.createTHead();
+			let row = thead.insertRow();
+			for (let key of data) {
+				let th = document.createElement('th');
+				let text = document.createTextNode(key);
+				th.appendChild(text);
+				row.appendChild(th);
+			}
+		}
+
+		function generateTableRows(table, data) {
+			let newRow = table.insertRow(-1);
+			data.map((row, index) => {
+				let newCell = newRow.insertCell();
+				let newText = document.createTextNode(row);
+				newCell.appendChild(newText);
+			});
+			
+		}
+
+
+
+
+	</script>
+
+	<script type="text/javascript">
+
+let btn_dataBase = document.getElementById('buttonimportCSV').addEventListener('click', (e) => {
+	document =  document.getElementById('txtCSVFile').files[0];
+	console.log(document);
+
+	Papa.parse(document.getElementById('txtCSVFile').files[0], {
+		download: true,
+		header: true,
+		complete: async function (results) {
+			
+			
+			var answer_happyUser;
+			var r = confirm("Estas segura que deseas agregarlos?");
+			if (r == true) {
+				
+			} else {
+				
+				return;
+			}
+		
+			
+
+		
+			
+			
+			
+					for (i in results.data) {
+
+
+						let datos = {};
+						datos.idProveedor = results.data[i].idProveedor;
+						datos.ivaCompra = results.data[i].ivaCompra;
+						datos.nombre = results.data[i].nombre;
+						datos.precioCompra = results.data[i].precioCompra;
+
+						if (datos.idProveedor == '' || datos.ivaCompra == '' || datos.nombre == '' || datos.precioCompra == '') {
+
+							return;
+
+						} else {
+
+
+							const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/addProducto', {
+								method: 'POST',
+								headers: {
+									'Accept': 'application/json',
+									'Content-Type': 'application/json'
+								},
+
+								body: JSON.stringify(datos)
+
+							});
+						}
+
+					}
+		}
+	});
+	e.preventDefault();
+	
+});
+
+
+</script>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
+	<!-- <script src="js/importarProductos.js"></script> -->
+
+
+</body>
+
+</html>

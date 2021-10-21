@@ -11,6 +11,6 @@ public interface ITipodeDocumentoDAO {
 	
 	TipodeDocumento getTipodeDocumentoById (Long Id);
 	
-	
+	void registrar(TipodeDocumento tipodeDocumento);
 
 }

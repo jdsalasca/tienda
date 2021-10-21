@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Registrarse</title>
+<title>SB Admin 2 - Register</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -32,59 +32,46 @@
 			<div class="card-body p-0">
 				<!-- Nested Row within Card Body -->
 				<div class="row">
-					<div class="col-lg-5 d-none d-lg-block ">
-						<img src="img/logo_registro.png">
-					</div>
-
+					<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
 					<div class="col-lg-7">
 						<div class="p-5">
 							<div class="text-center">
-								<h1 class="h4 text-gray-900 mb-4">Registrarse!</h1>
+								<h1 class="h4 text-gray-900 mb-4">Actualizar proveedor!</h1>
 							</div>
 							<form class="user">
-								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input type="text" class="form-control form-control-user"
-											id="txtNombre" placeholder="Nombre">
-									</div>
-									<div class="col-sm-6">
-										<input type="text" class="form-control form-control-user"
-											id="txtApellido" placeholder="apellido">
-									</div>
-								</div>
-								<div class="form-group">
-									<input type="text" class="form-control form-control-user"
-										id="txtCedula" placeholder="Documento de Identidad">
-								</div>
-								<div class="form-group">
-									<input type="text" class="form-control form-control-user"
-										id="txtNick" placeholder="Nombre de usuario :D">
-								</div>
 								<div class="form-group">
 									<input type="email" class="form-control form-control-user"
-										id="txtEmail" placeholder="Email">
+										id="txtCiudad" aria-describedby="emailHelp"
+										placeholder="Ingresa la ciudad">
 								</div>
-								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input type="password" class="form-control form-control-user"
-											id="txtPassword" placeholder="Password">
-									</div>
-									<div class="col-sm-6">
-										<input type="password" class="form-control form-control-user"
-											id="txtRepetirPassword" placeholder="Repeat Password">
-									</div>
+								<div class="form-group">
+									<input type="text" class="form-control form-control-user"
+										id="txtDireccion" placeholder="Ingresa tu Direccion">
 								</div>
-								<a onclick="registrarUsuario()" href="#"
-									class="btn btn-primary btn-user btn-block"> Registrarse </a>
-								<hr>
+								<div class="form-group">
+									<input type="text" class="form-control form-control-user"
+										id="txtNombre" placeholder="Ingresa tu nombre completo">
+								</div>
 
+
+								<div class="form-group">
+									<input type="text" class="form-control form-control-user"
+										id="txtTelefono" placeholder="Ingresa tu telefono">
+								</div>
+																<div class="form-group">
+									<input type="text" class="form-control form-control-user"
+										id="txtNit" placeholder="Ingresa el Nit de la empresa">
+								</div>
+
+								<a href="#" onclick="actualizarProveedor()"
+									class="btn btn-primary btn-user btn-block"> Actualizate e.e
+								</a>
 							</form>
+
+
+							<hr>
 							<hr>
 
-							<div class="text-center">
-								<a class="small" href="login.html">Ya tienes una cuenta?
-									Inicia sesion!</a>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -102,7 +89,7 @@
 
 	<!-- Custom scripts for all pages-->
 	<script src="js/sb-admin-2.min.js"></script>
-	<script src="js/registrar.js"></script>
+	<script src="js/actualizarProveedor.js"></script>
 
 </body>
 

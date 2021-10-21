@@ -16,12 +16,14 @@ function ActualizarEmailDelUsuario() {
 }
 
 
+
 async function cargarUsuarios() {
 
 
-	const request = await fetch('api/clientes', {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/clientes', {
 		method: 'GET',
-		headers: getHeaders()
+		headers: 		{'Accept': 'application/json',
+		'Content-Type': 'application/json',}
 
 	});
 	const clientes = await request.json();
@@ -54,7 +56,7 @@ async function eliminarCliente(id) {
 
 	}
 
-	const request = await fetch('api/Deletecliente/' + id, {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/Deletecliente/' + id, {
 		method: 'DELETE',
 		headers: getHeaders()
 
@@ -109,7 +111,7 @@ async function buscarCliente (){
 		
 
 	
-	const request = await fetch('api/clientesByCedula/'+ document.getElementById('txtCedula').value, {
+	const request = await fetch('/TiendaGenerica-0.0.1-SNAPSHOT/api/clientesByCedula/'+ document.getElementById('txtCedula').value, {
 		method: 'GET',
 		headers: getHeaders()
 

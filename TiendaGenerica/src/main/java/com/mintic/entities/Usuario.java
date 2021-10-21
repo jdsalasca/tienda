@@ -69,7 +69,7 @@ public class Usuario {
 	public String getEmail() {
 		return email;
 	}
-
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -80,6 +80,25 @@ public class Usuario {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Usuario(Long id, String nombre, String nick, String cedula, String email, String password) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.nick = nick;
+		this.cedula = cedula;
+		this.email = email;
+		this.password = password;
+	}
+
+	public Usuario() {
+		super();
+	}
+
+	public Usuario(Long id) {
+		super();
+		this.id = id;
 	}
 
 

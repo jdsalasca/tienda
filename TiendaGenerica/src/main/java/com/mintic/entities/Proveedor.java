@@ -9,6 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table (name = "proveedor")
 public class Proveedor {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -17,6 +18,8 @@ public class Proveedor {
     private String nombre;
     private String telefono;
     private String nit;
+    
+    
 	public Long getId() {
 		return id;
 	}
@@ -53,6 +56,32 @@ public class Proveedor {
 	public void setNit(String nit) {
 		this.nit = nit;
 	}
+	
+	/**
+	 * This constructors are necessary to implements non-serializable attribute of Spring Boot comunication c:
+	 * @param id
+	 * @param ciudad
+	 * @param direccion
+	 * @param nombre
+	 * @param telefono
+	 * @param nit
+	 */
+	public Proveedor(Long id, String ciudad, String direccion, String nombre, String telefono, String nit) {
+		super();
+		this.id = id;
+		this.ciudad = ciudad;
+		this.direccion = direccion;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.nit = nit;
+	}
+	public Proveedor() {
+	}
+	public Proveedor(Long id) {
+		super();
+		this.id = id;
+	}
+
     
     
 

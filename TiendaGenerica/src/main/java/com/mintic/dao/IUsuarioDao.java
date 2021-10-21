@@ -20,6 +20,8 @@ public interface IUsuarioDao {
 	Usuario FindById (Long id);
 
 	List<Usuario> FindByCedula(String cedula);
+
+	List<Usuario> FindByName(String nombre);
 	
 	
 

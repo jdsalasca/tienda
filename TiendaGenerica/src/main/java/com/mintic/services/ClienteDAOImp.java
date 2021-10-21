@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mintic.dao.IClienteDAO;
 import com.mintic.entities.Cliente;
+import com.mintic.entities.Producto;
 import com.mintic.entities.Usuario;
 
 import de.mkammerer.argon2.Argon2;
@@ -25,6 +26,7 @@ public class ClienteDAOImp implements IClienteDAO{
 	private EntityManager entityManager;
 
 	@Override
+	@Transactional
 	public List<Cliente> getCliente() {
 		String query = "FROM Cliente";
 		List<Cliente> list = entityManager.createQuery(query).getResultList();
@@ -98,6 +100,20 @@ public class ClienteDAOImp implements IClienteDAO{
 				
 				
 		return cliente;
+	}
+
+	@Override
+	public List<Cliente> clienteByName(String nombre) {
+	    String query = "FROM Cliente WHERE nombre LIKE :pattern ";
+	    List<Cliente> lista = entityManager.createQuery(query)
+	            .setParameter("pattern", "%"+ nombre+"%")
+	            .setMaxResults(4)
+	            .getResultList();
+
+	    if (lista.isEmpty()) {
+	        return null;
+	    }
+	    return lista;
 	}
 
 }

@@ -3,17 +3,20 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.mintic.dao.IProductoDAO;
 import com.mintic.entities.Producto;
+import com.mintic.entities.Usuario;
 
 
 
 
 @Repository
+@Transactional
 public class ProductoDAOimp implements IProductoDAO{
 	
 	@PersistenceContext
@@ -21,38 +24,52 @@ public class ProductoDAOimp implements IProductoDAO{
 
 	@Override
 	public List<Producto> getProducto() {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "FROM Producto";
+		return entityManager.createQuery(query).getResultList();	
 	}
 
 	@Override
 	public void eliminar(Long id) {
-		// TODO Auto-generated method stub
+		Producto producto = entityManager.find(Producto.class, id);
+		entityManager.remove(producto);
+		
 		
 	}
 
 	@Override
-	public void registrar(Producto cliente) {
-		// TODO Auto-generated method stub
+	public void registrar(Producto producto) {
+		entityManager.merge(producto);
+
 		
 	}
 
 	@Override
-	public Producto obtenerProductoPorCredenciales(Producto cliente) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void actualizar(Producto cliente) {
+	public void actualizar(Producto producto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Producto FindById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return entityManager.find(Producto.class, id);
+		
 	}
+	
+	@Override
+	public List<Producto> FindByNombre(String nombre) {
+	    String query = "FROM Producto WHERE nombre LIKE :pattern ";
+	    List<Producto> lista = entityManager.createQuery(query)
+	            .setParameter("pattern", "%"+ nombre+"%")
+	            .setMaxResults(4)
+	            .getResultList();
+
+	    if (lista.isEmpty()) {
+	        return null;
+	    }
+	    return lista;
+
+}
 
 }

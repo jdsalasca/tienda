@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mintic.dao.IUsuarioDao;
+import com.mintic.entities.Cliente;
 import com.mintic.entities.Usuario;
 import com.mintic.utils.JWTUtil;
 
@@ -97,6 +98,17 @@ public class UsuarioController {
 	public List<Usuario> obtenerUsuario(@PathVariable String cedula) {
 		return usuarioDao.FindByCedula(cedula);
 	}
+	
+
+	
+	@RequestMapping(value= "api/FindByNameUsuario/{name}", method = RequestMethod.GET)
+	public List<Usuario> clientesByName (@PathVariable String name) {
+		
+		
+		
+		return usuarioDao.FindByName(name);
+	}
+	
 	
 
 }

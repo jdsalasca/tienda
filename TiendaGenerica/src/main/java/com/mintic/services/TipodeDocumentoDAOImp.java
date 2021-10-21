@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mintic.dao.ITipodeDocumentoDAO;
 import com.mintic.entities.Cliente;
@@ -15,6 +16,7 @@ import com.mintic.entities.Usuario;
 
 
 @Repository
+@Transactional
 public class TipodeDocumentoDAOImp implements ITipodeDocumentoDAO{
 	
 	@PersistenceContext
@@ -41,6 +43,12 @@ public class TipodeDocumentoDAOImp implements ITipodeDocumentoDAO{
 			return documento;
 		}
 
+	}
+
+	@Override
+	public void registrar(TipodeDocumento tipodeDocumento) {
+		entityManager.merge(tipodeDocumento);
+		
 	}
 
 }
