@@ -28,19 +28,17 @@ async function iniciarSesion() {
 	
 	var respuesta = await request.text();
 	
-	if (document.getElementById('txtEmail').value == 'admininicial' && document.getElementById('txtPassword').value == 'admin123456' ){
-		respuesta ="ok"
-	}
+	console.log(respuesta)
 	
 	
 
-	if (respuesta != "FAIL") {
+	if (respuesta != "1") {
 		
 		localStorage.token = respuesta;
 		localStorage.email = datos.email;
 		
 		
-		window.location.href = 'usuarios.html'
+	window.location.href = 'usuarios.html'
 		
 		
 	}else {
