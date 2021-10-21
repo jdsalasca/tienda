@@ -109,6 +109,12 @@ public class UsuarioController {
 		return usuarioDao.FindByName(name);
 	}
 	
+	@RequestMapping(value= "api/FindByEmailUsuario/{email}", method = RequestMethod.GET)
+	public List<Usuario> clientesByemail (@PathVariable String email) {
+		
+		
+		return usuarioDao.FindByEmail(email);
+	}
 	
 
 }

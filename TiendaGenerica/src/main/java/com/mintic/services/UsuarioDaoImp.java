@@ -117,5 +117,20 @@ if (lista.isEmpty()) {
 return lista;
 }
 
+@Override
+public List<Usuario> FindByEmail(String email) {
+	
+    String query = "FROM Usuario WHERE email = :email";
+    List<Usuario> lista = entityManager.createQuery(query)
+            .setParameter("email", email)
+            .getResultList();
+
+    if (lista.isEmpty()) {
+        return null;
+    
+}
+    return lista;
+}
+
 }
 
