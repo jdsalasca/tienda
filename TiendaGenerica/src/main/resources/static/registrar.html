@@ -41,43 +41,86 @@
 							<div class="text-center">
 								<h1 class="h4 text-gray-900 mb-4">Registrarse!</h1>
 							</div>
-							<form class="user">
+							<form class="user" id="formulario" novalidate>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
+										<div id="error-Nombre" style="display: none;">
+											<h6>
+												<small> El nombre solo puede contener letras y
+													espacios </small>
+											</h6>
+										</div>
 										<input type="text" class="form-control form-control-user"
-											id="txtNombre" placeholder="Nombre">
+											id="txtNombre" placeholder="Nombre" required name="nombre">
+
+
 									</div>
 									<div class="col-sm-6">
+										<div id="error-Apellido" style="display: none;">
+											<h6>
+												<small> El apellido solo puede contener letras y
+													espacios </small>
+											</h6>
+										</div>
 										<input type="text" class="form-control form-control-user"
-											id="txtApellido" placeholder="apellido">
+											id="txtApellido" placeholder="apellido" name="apellido">
+										<span id="error-apellido"></span>
 									</div>
 								</div>
 								<div class="form-group">
+									<div id="error-Cedula" style="display: none;">
+										<h6>
+											<small> el documento de identidad debe tener mas de 5 caracteres </small>
+										</h6>
+									</div>
 									<input type="text" class="form-control form-control-user"
-										id="txtCedula" placeholder="Documento de Identidad">
+										id="txtCedula" placeholder="Documento de Identidad"
+										name="documentoIdentidad"> <span
+										id="error-documentoIdentidad"></span>
 								</div>
 								<div class="form-group">
+									<div id="error-Nick" style="display: none;">
+										<h6>
+											<small> El nick solo no puede contener espacios y
+												debe tener mas de 4 caracteres </small>
+										</h6>
+									</div>
 									<input type="text" class="form-control form-control-user"
-										id="txtNick" placeholder="Nombre de usuario :D">
+										id="txtNick" placeholder="Nombre de usuario :D" name="nick">
+									<span id="error-Nick"></span>
 								</div>
 								<div class="form-group">
+									<div id="error-Email" style="display: none;">
+										<h6>
+											<small>por favor digite un email reconocible </small>
+										</h6>
+									</div>
 									<input type="email" class="form-control form-control-user"
-										id="txtEmail"  placeholder="Email" required minlength="5"  maxlength="20">
+										id="txtEmail" placeholder="Email" name="email">
 								</div>
+
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
+										<div id="error-Password" style="display: none;">
+											<h6>
+												<small>contraseña demasiado corta </small>
+											</h6>
+										</div>
 										<input type="password" class="form-control form-control-user"
-											id="txtPassword" placeholder="Password">
+											id="txtPassword" placeholder="Password" name=password>
+
 									</div>
 									<div class="col-sm-6">
+
 										<input type="password" class="form-control form-control-user"
-											id="txtRepetirPassword" placeholder="Repeat Password">
+											id="txtRepetirPassword" placeholder="Repeat Password"
+											name="password">
+
 									</div>
 								</div>
 								<a onclick="registrarUsuario()" href="#"
 									class="btn btn-primary btn-user btn-block"> Registrarse </a>
 								<hr>
-
 							</form>
 							<hr>
 

@@ -102,7 +102,7 @@ public class UsuarioController {
 
 	
 	@RequestMapping(value= "api/FindByNameUsuario/{name}", method = RequestMethod.GET)
-	public List<Usuario> clientesByName (@PathVariable String name) {
+	public List<Usuario> UsuarioByName (@PathVariable String name) {
 		
 		
 		
@@ -110,11 +110,23 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value= "api/FindByEmailUsuario/{email}", method = RequestMethod.GET)
-	public List<Usuario> clientesByemail (@PathVariable String email) {
+	public List<Usuario> UsuariosByEmail (@PathVariable String email) {
+		
 		
 		
 		return usuarioDao.FindByEmail(email);
 	}
+	
+	@RequestMapping(value= "api/FindBynickUsuario/{nick}", method = RequestMethod.GET)
+	public List<Usuario> UsuariosByNick (@PathVariable String nick) {
+		
+		
+		
+		return usuarioDao.FindByNick(nick);
+	}
+	
+	
+	
 	
 
 }

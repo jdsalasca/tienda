@@ -24,6 +24,8 @@ public interface IUsuarioDao {
 	List<Usuario> FindByName(String nombre);
 
 	List<Usuario> FindByEmail(String email);
+
+	List<Usuario> FindByNick(String nick);
 	
 	
 
