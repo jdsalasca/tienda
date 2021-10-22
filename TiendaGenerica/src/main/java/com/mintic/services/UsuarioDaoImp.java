@@ -48,9 +48,9 @@ public class UsuarioDaoImp implements IUsuarioDao{
 
 	@Override
 	public Usuario obtenerUsuarioPorCredenciales(Usuario usuario) {
+	
 		
-		
-        String query = "FROM Usuario WHERE email = :email";
+        String query = "FROM Usuario WHERE email = :email OR nick= :email";
         List<Usuario> lista = entityManager.createQuery(query)
                 .setParameter("email", usuario.getEmail())
                 .getResultList();
@@ -115,6 +115,32 @@ if (lista.isEmpty()) {
     return null;
 }
 return lista;
+}
+
+@Override
+public List<Usuario> FindByEmail(String email) {
+	    String query = "FROM Usuario WHERE email = :email";
+	    List<Usuario> lista = entityManager.createQuery(query)
+	            .setParameter("email", email)
+	            .getResultList();
+
+	    if (lista.isEmpty()) {
+	        return null;
+	    }
+	return lista;
+}
+
+@Override
+public List<Usuario> FindByNick(String nick) {
+    String query = "FROM Usuario WHERE nick = :nick";
+    List<Usuario> lista = entityManager.createQuery(query)
+            .setParameter("nick", nick)
+            .getResultList();
+
+    if (lista.isEmpty()) {
+        return null;
+    }
+	return lista;
 }
 
 }
